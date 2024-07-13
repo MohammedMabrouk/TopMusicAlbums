@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
+
 }
 
 android {
@@ -23,6 +27,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -47,6 +52,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -68,6 +74,16 @@ dependencies {
     api(libs.glide.okhttp)
     api(libs.glide.compose)
 
+    // di
+    implementation(libs.hilt.android)
+    androidTestImplementation(libs.hilt.testing)
+    implementation(libs.hilt.compiler)
+
+    // network
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.moshi)
+    implementation(libs.okhttp.interceptor)
+    
     // unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
