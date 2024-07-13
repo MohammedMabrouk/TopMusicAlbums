@@ -12,6 +12,7 @@ materialAndroid = "1.6.7"
 glideVersion = "4.14.2"
 glideOkhttpVersion = "4.11.0"
 glideComposeVersion = "1.0.0-alpha.1"
+navigationCompose = "2.7.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +32,7 @@ androidx-material-android = { group = "androidx.compose.material", name = "mater
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
 glide-okhttp = { group = "com.github.bumptech.glide", name = "okhttp3-integration", version.ref = "glideOkhttpVersion" }
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glideComposeVersion" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

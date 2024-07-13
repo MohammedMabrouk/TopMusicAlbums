@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material.android)
+    implementation(libs.androidx.navigation.compose)
 
     // glide
     api(libs.glide)

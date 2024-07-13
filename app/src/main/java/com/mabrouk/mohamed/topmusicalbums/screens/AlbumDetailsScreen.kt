@@ -171,7 +171,7 @@ fun AlbumDetailsSection(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(16.dp),
             text = album.name,
             color = colorResource(id = R.color.dark_blue),
             fontSize = 20.sp,
