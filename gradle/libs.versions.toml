@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.1"
 kotlin = "1.9.24"
 ksp = "1.9.23-1.0.20"
 coreKtx = "1.10.1"
@@ -14,7 +14,7 @@ glideVersion = "4.16.0"
 glideOkhttpVersion = "4.11.0"
 glideComposeVersion = "1.0.0-alpha.1"
 navigationCompose = "2.7.7"
-hilt = "2.45"
+hilt = "2.44"
 retrofit = "2.11.0"
 okHttp = "4.12.0"
 
@@ -38,11 +38,13 @@ glide-okhttp = { group = "com.github.bumptech.glide", name = "okhttp3-integratio
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glideComposeVersion" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 retrofit = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
-retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 okhttp-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okHttp" }
+
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -50,6 +52,6 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 android-test = { id = "com.android.test", version.ref = "agp" }
 #kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 #ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-#hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 

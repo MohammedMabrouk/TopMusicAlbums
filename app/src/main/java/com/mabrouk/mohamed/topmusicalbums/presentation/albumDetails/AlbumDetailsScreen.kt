@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.feature.albumDetails
+package com.mabrouk.mohamed.topmusicalbums.presentation.albumDetails
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -37,9 +37,9 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.mabrouk.mohamed.topmusicalbums.R
 import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
-import com.mabrouk.mohamed.topmusicalbums.feature.compose.ExplicitBadge
-import com.mabrouk.mohamed.topmusicalbums.feature.compose.GenreItem
-import com.mabrouk.mohamed.topmusicalbums.feature.compose.InfoItem
+import com.mabrouk.mohamed.topmusicalbums.presentation.compose.ExplicitBadge
+import com.mabrouk.mohamed.topmusicalbums.presentation.compose.GenreItem
+import com.mabrouk.mohamed.topmusicalbums.presentation.compose.InfoItem
 
 
 val album = AlbumItem(

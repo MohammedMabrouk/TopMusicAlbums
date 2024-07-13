@@ -7,4 +7,8 @@
     <string name="release_date_lbl">Release Date</string>
     <string name="genres_lbl">Genres</string>
     <string name="show_on_itunes_lbl">Show on iTunes</string>
+    <string name="error_internet_connection">Sorry, no internet connection!</string>
+    <string name="network_error">Network Error</string>
+    <string name="no_data">No Data</string>
+    <string name="try_again">Try Again</string>
 </resources>

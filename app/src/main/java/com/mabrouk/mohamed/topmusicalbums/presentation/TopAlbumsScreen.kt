@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.feature
+package com.mabrouk.mohamed.topmusicalbums.presentation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mabrouk.mohamed.topmusicalbums.feature.albumDetails.AlbumsDetailsScreen
-import com.mabrouk.mohamed.topmusicalbums.feature.home.AlbumsListScreen
+import com.mabrouk.mohamed.topmusicalbums.presentation.albumDetails.AlbumsDetailsScreen
+import com.mabrouk.mohamed.topmusicalbums.presentation.home.AlbumsListScreen
 
 @Composable
 fun TopAlbumsScreen(

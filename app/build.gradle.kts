@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-//    id("kotlin-kapt")
-//    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 //    id("kotlin-parcelize")
 //    alias(libs.plugins.ksp)
 }
@@ -42,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.14"
@@ -54,10 +55,16 @@ android {
 
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.android.gradlePlugin)
 
     // compose
     implementation(libs.androidx.activity.compose)
@@ -74,14 +81,13 @@ dependencies {
     api(libs.glide.compose)
 
     // di
-//    implementation(libs.hilt.android)
-//    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 //    ksp(libs.hilt.compiler)
 
 
     // network
     implementation(libs.retrofit)
-    implementation(libs.retrofit.moshi)
     implementation(libs.okhttp.interceptor)
 
     // unit test

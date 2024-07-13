@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.feature.compose
+package com.mabrouk.mohamed.topmusicalbums.presentation.compose
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
