@@ -1,9 +1,9 @@
-package com.mabrouk.mohamed.topmusicalbums
+package com.mabrouk.mohamed.topmusicalbums.feature
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.mabrouk.mohamed.topmusicalbums.screens.AlbumsListScreen
+import com.mabrouk.mohamed.topmusicalbums.feature.home.AlbumsListScreen
 
 
 class MainActivity : ComponentActivity() {

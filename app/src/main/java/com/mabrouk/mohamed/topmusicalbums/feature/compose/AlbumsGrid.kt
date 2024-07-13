@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.compose
+package com.mabrouk.mohamed.topmusicalbums.feature.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,6 +13,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mabrouk.mohamed.topmusicalbums.R
+import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
 
 
 @Composable

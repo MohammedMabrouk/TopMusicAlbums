@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.screens
+package com.mabrouk.mohamed.topmusicalbums.feature.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,8 +12,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.mabrouk.mohamed.topmusicalbums.R
-import com.mabrouk.mohamed.topmusicalbums.compose.AlbumsGrid
-import com.mabrouk.mohamed.topmusicalbums.compose.InfoSection
+import com.mabrouk.mohamed.topmusicalbums.feature.compose.AlbumsGrid
+import com.mabrouk.mohamed.topmusicalbums.feature.compose.InfoSection
 
 @Composable
 fun AlbumsListScreen() {

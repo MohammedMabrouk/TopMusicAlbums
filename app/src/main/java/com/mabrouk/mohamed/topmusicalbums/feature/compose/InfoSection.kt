@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.compose
+package com.mabrouk.mohamed.topmusicalbums.feature.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

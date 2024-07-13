@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.compose
+package com.mabrouk.mohamed.topmusicalbums.feature.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.mabrouk.mohamed.topmusicalbums.R
+import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -116,14 +117,3 @@ fun AlbumListItemPreview(
         )
     )
 }
-
-data class AlbumItem(
-    val id: String,
-    val name: String,
-    val artistName: String,
-    val albumImageUrl: String,
-    val genres: List<String>,
-    val releaseDate: String,
-    val isExplicit: Boolean,
-    val albumUrl: String
-)

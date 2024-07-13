@@ -1,4 +1,4 @@
-package com.mabrouk.mohamed.topmusicalbums.compose
+package com.mabrouk.mohamed.topmusicalbums.feature.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,17 +16,18 @@ import androidx.compose.ui.unit.sp
 import com.mabrouk.mohamed.topmusicalbums.R
 
 @Composable
-fun ExplicitBadge(modifier: Modifier) {
+fun GenreItem(name: String) {
     Box(
-        modifier = modifier
-            .clip(RoundedCornerShape(2.dp))
-            .background(colorResource(id = R.color.black))
+        modifier = Modifier
+            .padding(horizontal = 4.dp)
+            .clip(RoundedCornerShape(6.dp))
+            .background(colorResource(id = R.color.purple_500))
     ) {
         Text(
             modifier = Modifier
-                .padding(horizontal = 4.dp)
-                .padding(vertical = 2.dp),
-            text = "E",
+                .padding(horizontal = 6.dp)
+                .padding(vertical = 4.dp),
+            text = name,
             color = colorResource(id = R.color.white),
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold
@@ -36,6 +37,6 @@ fun ExplicitBadge(modifier: Modifier) {
 
 @Composable
 @Preview
-fun ExplicitBadgePreview() {
-    ExplicitBadge(Modifier)
+fun GenreItemPreview() {
+    GenreItem("Music")
 }

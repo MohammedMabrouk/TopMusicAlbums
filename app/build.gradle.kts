@@ -1,10 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
-    id("kotlin-parcelize")
-
+//    id("kotlin-kapt")
+//    id("dagger.hilt.android.plugin")
+//    id("kotlin-parcelize")
+//    alias(libs.plugins.ksp)
 }
 
 android {
@@ -27,7 +27,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -35,17 +34,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "19"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -75,15 +74,16 @@ dependencies {
     api(libs.glide.compose)
 
     // di
-    implementation(libs.hilt.android)
-    androidTestImplementation(libs.hilt.testing)
-    implementation(libs.hilt.compiler)
+//    implementation(libs.hilt.android)
+//    kapt(libs.hilt.compiler)
+//    ksp(libs.hilt.compiler)
+
 
     // network
     implementation(libs.retrofit)
     implementation(libs.retrofit.moshi)
     implementation(libs.okhttp.interceptor)
-    
+
     // unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
