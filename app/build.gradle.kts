@@ -1,10 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-//    id("kotlin-parcelize")
-//    alias(libs.plugins.ksp)
+    id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -34,11 +34,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_19
-        targetCompatibility = JavaVersion.VERSION_19
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "19"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -52,7 +52,19 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-
+    hilt {
+        enableAggregatingTask = true
+    }
+    kotlin {
+        sourceSets.configureEach {
+            kotlin.srcDir(layout.buildDirectory.files("generated/ksp/$name/kotlin/"))
+        }
+        sourceSets.all {
+            languageSettings {
+                languageVersion = "2.0"
+            }
+        }
+    }
 }
 
 kapt {
@@ -63,8 +75,8 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(libs.android.gradlePlugin)
+//    compileOnly(libs.kotlin.gradlePlugin)
+//    compileOnly(libs.android.gradlePlugin)
 
     // compose
     implementation(libs.androidx.activity.compose)
@@ -79,12 +91,13 @@ dependencies {
     api(libs.glide)
     api(libs.glide.okhttp)
     api(libs.glide.compose)
+    ksp(libs.glide.compiler)
 
     // di
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-//    ksp(libs.hilt.compiler)
-
+//    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
+//    implementation(libs.hilt.navigation.compose)
 
     // network
     implementation(libs.retrofit)

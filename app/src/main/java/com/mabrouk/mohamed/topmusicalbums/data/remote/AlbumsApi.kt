@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface AlbumsApi {
 
-    @GET("/${COUNTRY_CODE}/music/most-played/${COUNT_LIMIT}/albums.json")
+    @GET("${COUNTRY_CODE}/music/most-played/${COUNT_LIMIT}/albums.json")
     suspend fun getTopAlbums(): GetAlbumsResponse
 
 }

@@ -1,9 +1,11 @@
 package com.mabrouk.mohamed.topmusicalbums.data.remote
 
 import com.mabrouk.mohamed.topmusicalbums.data.AlbumsDataSource
+import com.mabrouk.mohamed.topmusicalbums.data.mapper.toDomain
 import com.mabrouk.mohamed.topmusicalbums.data.remote.model.GetAlbumsResponse
+import com.mabrouk.mohamed.topmusicalbums.data.remote.model.Result
 import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
-import com.mabrouk.mohamed.topmusicalbums.presentation.State
+import com.mabrouk.mohamed.topmusicalbums.presentation.Outcome
 import com.mabrouk.mohamed.topmusicalbums.utils.Constants.NETWORK_ERROR
 import com.mabrouk.mohamed.topmusicalbums.utils.Constants.NO_DATA
 import com.mabrouk.mohamed.topmusicalbums.utils.Constants.NO_INTERNET_CONNECTION
@@ -15,18 +17,17 @@ class AlbumsRemoteDataSource @Inject constructor(
     private val networkState: NetworkState,
     private val albumsApi: AlbumsApi,
 ) : AlbumsDataSource {
-    override suspend fun getTopAlbums(): State<List<AlbumItem>> {
+    override suspend fun getTopAlbums(): Outcome<List<AlbumItem>> {
 
         return when (val response = processCall(albumsApi::getTopAlbums)) {
             is List<*> -> {
-                State.Success(
-                    data = listOf()
-                    //todo: map list
+                Outcome.Success(
+                    data = (response as List<Result>).map { it.toDomain() }
                 )
             }
 
             else -> {
-                State.DataError(errorCode = response as Int)
+                Outcome.Error(Exception(response.toString()))
             }
         }
     }

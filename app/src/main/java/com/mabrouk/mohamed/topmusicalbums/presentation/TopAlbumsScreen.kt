@@ -9,10 +9,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mabrouk.mohamed.topmusicalbums.presentation.albumDetails.AlbumsDetailsScreen
 import com.mabrouk.mohamed.topmusicalbums.presentation.home.AlbumsListScreen
+import com.mabrouk.mohamed.topmusicalbums.presentation.home.AlbumsListViewModel
 
 @Composable
 fun TopAlbumsScreen(
-
+    viewModel: AlbumsListViewModel
 ) {
     val navController = rememberNavController()
 
@@ -23,7 +24,7 @@ fun TopAlbumsScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = TopAlbumsScreens.ALBUMS_LIST.name) {
-                AlbumsListScreen()
+                AlbumsListScreen(viewModel)
             }
 
             composable(route = "${TopAlbumsScreens.ALBUM_DETAILS.name}/{}") {

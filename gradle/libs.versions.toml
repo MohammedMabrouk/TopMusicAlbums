@@ -1,7 +1,7 @@
 [versions]
 agp = "8.5.1"
 kotlin = "1.9.24"
-ksp = "1.9.23-1.0.20"
+ksp = "1.9.24-1.0.20"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -14,7 +14,8 @@ glideVersion = "4.16.0"
 glideOkhttpVersion = "4.11.0"
 glideComposeVersion = "1.0.0-alpha.1"
 navigationCompose = "2.7.7"
-hilt = "2.44"
+hilt = "2.51.1"
+hiltNavigationCompose = "1.2.0"
 retrofit = "2.11.0"
 okHttp = "4.12.0"
 
@@ -36,22 +37,19 @@ androidx-material-android = { group = "androidx.compose.material", name = "mater
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
 glide-okhttp = { group = "com.github.bumptech.glide", name = "okhttp3-integration", version.ref = "glideOkhttpVersion" }
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glideComposeVersion" }
+glide-compiler = { group = "com.github.bumptech.glide", name = "ksp", version.ref = "glideVersion" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 retrofit = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 okhttp-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okHttp" }
 
-android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
-#kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-#ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-
-
