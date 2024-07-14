@@ -16,6 +16,10 @@ class RealmDataBase {
         return realm.query<AlbumItem>().find()
     }
 
+    fun getAlbumById(albumId: Long): AlbumItem? {
+        return realm.query<AlbumItem>("id = $0", albumId).find().firstOrNull()
+    }
+
     fun saveAlbums(albums: List<AlbumItem>) {
         realm.writeBlocking {
             albums.forEach {

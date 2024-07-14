@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface AlbumsRepository {
     fun getTopAlbums(): Flow<Outcome<List<AlbumItem>>>
+    fun getAlbumDetails(albumId: Long): Flow<Outcome<AlbumItem>>
 }

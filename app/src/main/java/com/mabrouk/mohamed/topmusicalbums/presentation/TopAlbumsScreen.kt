@@ -8,12 +8,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mabrouk.mohamed.topmusicalbums.presentation.albumDetails.AlbumsDetailsScreen
+import com.mabrouk.mohamed.topmusicalbums.presentation.albumDetails.AlbumDetailsViewModel
 import com.mabrouk.mohamed.topmusicalbums.presentation.home.AlbumsListScreen
 import com.mabrouk.mohamed.topmusicalbums.presentation.home.AlbumsListViewModel
 
 @Composable
 fun TopAlbumsScreen(
-    viewModel: AlbumsListViewModel
+    albumsListViewModel: AlbumsListViewModel,
+    albumDetailsViewModel: AlbumDetailsViewModel,
+    onItunesButtonClick: (String) -> Unit
 ) {
     val navController = rememberNavController()
 
@@ -24,13 +27,18 @@ fun TopAlbumsScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = TopAlbumsScreens.ALBUMS_LIST.name) {
-                AlbumsListScreen(viewModel){
-                    navController.navigate(TopAlbumsScreens.ALBUM_DETAILS.name)
+                AlbumsListScreen(albumsListViewModel) {
+                    it?.let {
+                        navController.navigate("${TopAlbumsScreens.ALBUM_DETAILS.name}/$it")
+                    }
                 }
             }
 
-            composable(route = "${TopAlbumsScreens.ALBUM_DETAILS.name}") {
-                AlbumsDetailsScreen()
+            composable(route = "${TopAlbumsScreens.ALBUM_DETAILS.name}/{albumId}") { backStackEntry ->
+                val albumId = backStackEntry.arguments?.getString("albumId")?.toLong()
+                AlbumsDetailsScreen(navController, albumDetailsViewModel, albumId){
+                    onItunesButtonClick(it)
+                }
             }
         }
     }

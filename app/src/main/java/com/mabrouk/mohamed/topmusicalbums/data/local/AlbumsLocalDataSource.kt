@@ -24,7 +24,17 @@ class AlbumsLocalDataSource @Inject constructor(
         }
     }
 
-    suspend fun saveAlbums(albums: List<AlbumItem>) {
+    override suspend fun getAlbumById(albumId: Long): Outcome<AlbumItem> {
+        realmDataBase.getAlbumById(albumId).let {
+            return if (it == null) {
+                Outcome.Error(Exception(NO_DATA.toString()))
+            } else {
+                Outcome.Success(it)
+            }
+        }
+    }
+
+    fun saveAlbums(albums: List<AlbumItem>) {
         realmDataBase.saveAlbums(albums)
     }
 

@@ -32,13 +32,16 @@ class AlbumsRemoteDataSource @Inject constructor(
         }
     }
 
+    override suspend fun getAlbumById(albumId: Long): Outcome<AlbumItem> {
+        return Outcome.Error(Exception(NO_DATA.toString()))
+    }
+
     private suspend fun processCall(responseCall: suspend () -> GetAlbumsResponse): Any? {
         if (!networkState.isConnected()) {
             return NO_INTERNET_CONNECTION
         }
         return try {
             val response = responseCall.invoke()
-            // since API is not providing statusCode, we're checking on the nullability.
             response.feed.results.ifEmpty {
                 NO_DATA
             }

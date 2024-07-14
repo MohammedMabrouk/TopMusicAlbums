@@ -29,4 +29,11 @@ class AlbumsRepositoryImpl @Inject constructor(
 
         }.flowOn(ioDispatcher)
     }
+
+    override fun getAlbumDetails(albumId: Long): Flow<Outcome<AlbumItem>> {
+        return flow {
+            emit(Outcome.loading())
+            emit(albumsLocalDataSource.getAlbumById(albumId))
+        }.flowOn(ioDispatcher)
+    }
 }

@@ -5,4 +5,5 @@ import com.mabrouk.mohamed.topmusicalbums.presentation.Outcome
 
 interface AlbumsDataSource {
     suspend fun getTopAlbums(): Outcome<List<AlbumItem>>
+    suspend fun getAlbumById(albumId: Long): Outcome<AlbumItem>
 }

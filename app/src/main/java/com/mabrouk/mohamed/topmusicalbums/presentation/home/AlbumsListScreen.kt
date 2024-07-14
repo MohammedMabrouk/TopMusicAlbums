@@ -3,13 +3,10 @@ package com.mabrouk.mohamed.topmusicalbums.presentation.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -19,7 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -34,7 +30,7 @@ import com.mabrouk.mohamed.topmusicalbums.presentation.compose.InfoSection
 @Composable
 fun AlbumsListScreen(
     viewModel: AlbumsListViewModel,
-    onAlbumClick: (AlbumItem) -> Unit
+    onAlbumClick: (Long?) -> Unit
 ) {
     val albumsOutcome by viewModel.albumsOutcome.collectAsState()
 
@@ -89,7 +85,7 @@ fun AlbumsListScreen(
 
                 is Outcome.Success -> {
                     AlbumsGrid((albumsOutcome as Outcome.Success<List<AlbumItem>>).data) {
-                        onAlbumClick(it)
+                        onAlbumClick(it.id)
                     }
                 }
 
