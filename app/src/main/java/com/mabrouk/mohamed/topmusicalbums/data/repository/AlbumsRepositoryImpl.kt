@@ -1,5 +1,6 @@
 package com.mabrouk.mohamed.topmusicalbums.data.repository
 
+import com.mabrouk.mohamed.topmusicalbums.data.local.AlbumsLocalDataSource
 import com.mabrouk.mohamed.topmusicalbums.data.remote.AlbumsRemoteDataSource
 import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
 import com.mabrouk.mohamed.topmusicalbums.domain.repository.AlbumsRepository
@@ -12,12 +13,20 @@ import javax.inject.Inject
 
 class AlbumsRepositoryImpl @Inject constructor(
     private val albumsRemoteDataSource: AlbumsRemoteDataSource,
+    private val albumsLocalDataSource: AlbumsLocalDataSource,
     private val ioDispatcher: CoroutineDispatcher,
 ) : AlbumsRepository {
     override fun getTopAlbums(): Flow<Outcome<List<AlbumItem>>> {
         return flow {
             emit(Outcome.loading())
-            emit(albumsRemoteDataSource.getTopAlbums())
+            val response = albumsRemoteDataSource.getTopAlbums()
+            if (response is Outcome.Success) {
+                emit(response)
+                albumsLocalDataSource.saveAlbums(response.data)
+            } else if (response is Outcome.Error) {
+                emit(albumsLocalDataSource.getTopAlbums())
+            }
+
         }.flowOn(ioDispatcher)
     }
 }

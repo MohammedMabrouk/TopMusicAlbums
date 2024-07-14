@@ -33,7 +33,8 @@ import com.mabrouk.mohamed.topmusicalbums.presentation.compose.InfoSection
 
 @Composable
 fun AlbumsListScreen(
-    viewModel: AlbumsListViewModel
+    viewModel: AlbumsListViewModel,
+    onAlbumClick: (AlbumItem) -> Unit
 ) {
     val albumsOutcome by viewModel.albumsOutcome.collectAsState()
 
@@ -87,7 +88,9 @@ fun AlbumsListScreen(
                 }
 
                 is Outcome.Success -> {
-                    AlbumsGrid((albumsOutcome as Outcome.Success<List<AlbumItem>>).data)
+                    AlbumsGrid((albumsOutcome as Outcome.Success<List<AlbumItem>>).data) {
+                        onAlbumClick(it)
+                    }
                 }
 
                 else -> {}

@@ -28,19 +28,22 @@ import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.mabrouk.mohamed.topmusicalbums.R
+import com.mabrouk.mohamed.topmusicalbums.data.mapper.toDomain
 import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
+import io.realm.kotlin.ext.realmListOf
+import io.realm.kotlin.ext.toRealmList
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun AlbumListItem(albumItem: AlbumItem) {
-    // todo: replace with data class
-    // todo: copyright info ??
-
+fun AlbumListItem(
+    albumItem: AlbumItem,
+    onAlbumClick: (AlbumItem) -> Unit
+) {
     Card(
         modifier = Modifier
             .padding(4.dp)
             .height(270.dp)
-            .clickable { },
+            .clickable { onAlbumClick(albumItem) },
         shape = RoundedCornerShape(16.dp),
         backgroundColor = colorResource(id = R.color.white),
         elevation = 2.dp
@@ -48,7 +51,7 @@ fun AlbumListItem(albumItem: AlbumItem) {
         Column(
             modifier = Modifier.padding(8.dp),
         ) {
-            albumItem.albumImageUrl.let {
+            albumItem.albumImageUrl?.let {
                 if (it.isNotEmpty()) {
                     Box(
                         modifier = Modifier.size(180.dp)
@@ -80,7 +83,7 @@ fun AlbumListItem(albumItem: AlbumItem) {
 
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = albumItem.name,
+                text = albumItem.name ?: "",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 maxLines = 2,
@@ -88,7 +91,7 @@ fun AlbumListItem(albumItem: AlbumItem) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = albumItem.artistName,
+                text = albumItem.artistName ?: "",
                 fontSize = 14.sp
             )
         }
@@ -102,18 +105,21 @@ class ExplicitPreviewParameter : PreviewParameterProvider<Boolean> {
 @Composable
 @Preview
 fun AlbumListItemPreview(
-    @PreviewParameter(ExplicitPreviewParameter::class) isExplicit: Boolean
+    @PreviewParameter(ExplicitPreviewParameter::class) showExplicit: Boolean
 ) {
     AlbumListItem(
-        AlbumItem(
-            id = "1755022177",
-            name = "The Death of Slim Shady \n(Coup De Grâce)",
-            artistName = "Eminem",
-            albumImageUrl = "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/2c/ce/8b2cced1-ef53-ae9f-df26-5c5d8ad0009e/24UMGIM70968.rgb.jpg/100x100bb.jpg",
-            genres = listOf("Hip-Hop/Rap", "Music"),
-            releaseDate = "2024-07-12",
-            isExplicit = isExplicit,
-            albumUrl = "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
-        )
+        AlbumItem().apply {
+            id = 1755022177
+            name = "The Death of Slim Shady \n(Coup De Grâce)"
+            artistName = "Eminem"
+            albumImageUrl =
+                "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/2c/ce/8b2cced1-ef53-ae9f-df26-5c5d8ad0009e/24UMGIM70968.rgb.jpg/100x100bb.jpg"
+            genres = realmListOf("Hip-Hop/Rap", "Music")
+            releaseDate = "2024-07-12"
+            isExplicit = showExplicit
+            albumUrl =
+                "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
+        },
+        {}
     )
 }

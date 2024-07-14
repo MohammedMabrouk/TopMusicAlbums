@@ -1,6 +1,8 @@
 package com.mabrouk.mohamed.topmusicalbums.data.remote.di
 
 import android.content.Context
+import com.mabrouk.mohamed.topmusicalbums.data.local.AlbumsLocalDataSource
+import com.mabrouk.mohamed.topmusicalbums.data.local.database.RealmDataBase
 import com.mabrouk.mohamed.topmusicalbums.data.remote.AlbumsApi
 import com.mabrouk.mohamed.topmusicalbums.data.remote.AlbumsRemoteDataSource
 import com.mabrouk.mohamed.topmusicalbums.data.remote.Params.BASE_URL
@@ -62,9 +64,11 @@ internal object RemoteModule {
     fun provideAlbumsRepository(
         networkState: NetworkState,
         albumsApi: AlbumsApi,
+        realmDataBase: RealmDataBase,
         ioDispatcher: CoroutineDispatcher
     ): AlbumsRepository = AlbumsRepositoryImpl(
         AlbumsRemoteDataSource(networkState, albumsApi),
+        AlbumsLocalDataSource(realmDataBase),
         ioDispatcher
     )
 

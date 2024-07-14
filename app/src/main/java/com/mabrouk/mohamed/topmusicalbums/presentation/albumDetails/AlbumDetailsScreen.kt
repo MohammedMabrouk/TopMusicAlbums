@@ -40,18 +40,19 @@ import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
 import com.mabrouk.mohamed.topmusicalbums.presentation.compose.ExplicitBadge
 import com.mabrouk.mohamed.topmusicalbums.presentation.compose.GenreItem
 import com.mabrouk.mohamed.topmusicalbums.presentation.compose.InfoItem
+import io.realm.kotlin.ext.realmListOf
 
-
-val album = AlbumItem(
-    id = "1755022177",
-    name = "The Death of Slim Shady (Coup De Grâce)",
-    artistName = "Eminem",
-    albumImageUrl = "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/2c/ce/8b2cced1-ef53-ae9f-df26-5c5d8ad0009e/24UMGIM70968.rgb.jpg/100x100bb.jpg",
-    genres = listOf("Hip-Hop/Rap", "Music"),
-    releaseDate = "2024-07-12",
-    isExplicit = true,
-    albumUrl = "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
-)
+//
+//val album = AlbumItem(
+//    _id = 1755022177,
+//    name = "The Death of Slim Shady (Coup De Grâce)",
+//    artistName = "Eminem",
+//    albumImageUrl = "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/2c/ce/8b2cced1-ef53-ae9f-df26-5c5d8ad0009e/24UMGIM70968.rgb.jpg/100x100bb.jpg",
+//    genres = realmListOf("Hip-Hop/Rap", "Music"),
+//    releaseDate = "2024-07-12",
+//    isExplicit = true,
+//    albumUrl = "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
+//)
 
 @Composable
 fun AlbumsDetailsScreen() {
@@ -91,10 +92,10 @@ fun AlbumsDetailsScreen() {
                 ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            AlbumDetailsSection(
-                album,
-                modifier = Modifier.weight(1.0f)
-            )
+//            AlbumDetailsSection(
+//                album,
+//                modifier = Modifier.weight(1.0f)
+//            )
             Button(
                 onClick = {},
                 modifier = Modifier.padding(16.dp)
@@ -137,7 +138,7 @@ fun AlbumDetailsSection(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
-            album.albumImageUrl.let {
+            album.albumImageUrl?.let {
                 if (it.isNotEmpty()) {
                     Box(
                         modifier = Modifier.size(180.dp)
@@ -172,7 +173,7 @@ fun AlbumDetailsSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            text = album.name,
+            text = album.name ?: "",
             color = colorResource(id = R.color.dark_blue),
             fontSize = 20.sp,
             textAlign = TextAlign.Center,
@@ -181,15 +182,15 @@ fun AlbumDetailsSection(
         Spacer(modifier = Modifier.height(12.dp))
         InfoItem(
             stringResource(id = R.string.artist_lbl),
-            album.artistName,
+            album.artistName ?: "",
         )
         Spacer(modifier = Modifier.height(12.dp))
         InfoItem(
             stringResource(id = R.string.release_date_lbl),
-            album.releaseDate,
+            album.releaseDate ?: "",
         )
         Spacer(modifier = Modifier.height(12.dp))
-        if (album.genres.isNotEmpty()) {
+        album.genres?.let { genreList ->
             Text(
                 text = stringResource(id = R.string.genres_lbl),
                 fontSize = 12.sp,
@@ -200,7 +201,7 @@ fun AlbumDetailsSection(
                     .padding(top = 2.dp)
                     .padding(start = 4.dp),
             ) {
-                items(album.genres) {
+                items(genreList) {
                     GenreItem(it)
                 }
             }

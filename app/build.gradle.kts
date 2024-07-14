@@ -5,6 +5,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     alias(libs.plugins.ksp)
+    alias(libs.plugins.realm)
 }
 
 android {
@@ -75,8 +76,6 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-//    compileOnly(libs.kotlin.gradlePlugin)
-//    compileOnly(libs.android.gradlePlugin)
 
     // compose
     implementation(libs.androidx.activity.compose)
@@ -95,13 +94,16 @@ dependencies {
 
     // di
     implementation(libs.hilt.android)
-//    kapt(libs.hilt.compiler)
     ksp(libs.hilt.compiler)
-//    implementation(libs.hilt.navigation.compose)
 
     // network
     implementation(libs.retrofit)
     implementation(libs.okhttp.interceptor)
+
+    // realm
+    implementation(libs.realm.base)
+    implementation(libs.realm.lib)
+    implementation(libs.realm.coroutines)
 
     // unit test
     testImplementation(libs.junit)

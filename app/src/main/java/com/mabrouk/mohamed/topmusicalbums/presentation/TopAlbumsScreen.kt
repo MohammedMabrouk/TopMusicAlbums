@@ -24,10 +24,12 @@ fun TopAlbumsScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = TopAlbumsScreens.ALBUMS_LIST.name) {
-                AlbumsListScreen(viewModel)
+                AlbumsListScreen(viewModel){
+                    navController.navigate(TopAlbumsScreens.ALBUM_DETAILS.name)
+                }
             }
 
-            composable(route = "${TopAlbumsScreens.ALBUM_DETAILS.name}/{}") {
+            composable(route = "${TopAlbumsScreens.ALBUM_DETAILS.name}") {
                 AlbumsDetailsScreen()
             }
         }

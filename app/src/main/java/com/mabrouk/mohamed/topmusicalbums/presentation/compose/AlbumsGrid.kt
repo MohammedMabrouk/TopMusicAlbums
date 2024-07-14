@@ -14,11 +14,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mabrouk.mohamed.topmusicalbums.R
 import com.mabrouk.mohamed.topmusicalbums.domain.model.AlbumItem
+import io.realm.kotlin.ext.realmListOf
 
 
 @Composable
 fun AlbumsGrid(
-    albumsList: List<AlbumItem>
+    albumsList: List<AlbumItem>,
+    onAlbumClick: (AlbumItem) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -35,7 +37,9 @@ fun AlbumsGrid(
             )
     ) {
         items(albumsList) { item ->
-            AlbumListItem(albumItem = item)
+            AlbumListItem(albumItem = item) {
+                onAlbumClick(it)
+            }
         }
     }
 }
@@ -45,28 +49,31 @@ fun AlbumsGrid(
 fun AlbumsGridPreview() {
 
     val fakeList = listOf(
-        AlbumItem(
-            id = "1755022177",
-            name = "The Death of Slim Shady (Coup De Grâce)",
-            artistName = "Eminem",
-            albumImageUrl = "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/2c/ce/8b2cced1-ef53-ae9f-df26-5c5d8ad0009e/24UMGIM70968.rgb.jpg/100x100bb.jpg",
-            genres = listOf("Hip-Hop/Rap", "Music"),
-            releaseDate = "2024-07-12",
-            isExplicit = true,
-            albumUrl = "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
-        ),
-        AlbumItem(
-            id = "1755022177",
-            name = "Test",
-            artistName = "Eminem",
-            albumImageUrl = "",
-            genres = listOf("Hip-Hop/Rap", "Music"),
-            releaseDate = "2024-07-12",
-            isExplicit = false,
-            albumUrl = "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
-        ),
+        AlbumItem().apply {
+            id = 1755022177
+            name = "The Death of Slim Shady (Coup De Grâce)"
+            artistName = "Eminem"
+            albumImageUrl =
+                "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/2c/ce/8b2cced1-ef53-ae9f-df26-5c5d8ad0009e/24UMGIM70968.rgb.jpg/100x100bb.jpg"
+            genres = realmListOf("Hip-Hop/Rap", "Music")
+            releaseDate = "2024-07-12"
+            isExplicit = true
+            albumUrl =
+                "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
+        },
+        AlbumItem().apply {
+            id = 1755022177
+            name = "The Death of Slim Shady (Coup De Grâce)"
+            artistName = "Eminem"
+            albumImageUrl =
+                "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/2c/ce/8b2cced1-ef53-ae9f-df26-5c5d8ad0009e/24UMGIM70968.rgb.jpg/100x100bb.jpg"
+            genres = realmListOf("Hip-Hop/Rap", "Music")
+            releaseDate = "2024-07-12"
+            isExplicit = true
+            albumUrl =
+                "https://music.apple.com/us/album/the-death-of-slim-shady-coup-de-gr%C3%A2ce/1755022177"
+        },
+    )
 
-        )
-
-    AlbumsGrid(fakeList)
+    AlbumsGrid(fakeList) {}
 }
